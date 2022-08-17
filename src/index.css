@@ -59,8 +59,8 @@ button {
 /*can also be written as grid-template: repeat(5, 1fr) / repeat(4, 1fr); */
 
 
-.button:hover {
-  opacity: 0.9;
+button:hover {
+  opacity: 0.8;
 }
 
 .deleteButton {
