@@ -37,9 +37,7 @@ function App() {
       <button className="dotSign">.</button>
       
       <button className="equalSign">=</button>
-
-
-      </div>
+     </div>
 
     </div>
     </div>
