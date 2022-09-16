@@ -64,10 +64,12 @@ function App() {
 
   const operatorType = (e) => {
     setTotal(false);
-    setOperator(e.target.innerText);
-    completeExpression ? setCompleteExpression((preCurState) => preCurState + e.target.innerText) : setCompleteExpression(e.target.innerText);
-     
 
+  
+    setOperator(e.target.innerText);
+    completeExpression ? setCompleteExpression((preCurState) => preCurState + " " + e.target.innerText + " ") : setCompleteExpression(e.target.innerText);
+
+   
  
     if (e.target.innerText === "-" && curState === "") {
       setCurState("-");
@@ -77,6 +79,7 @@ function App() {
     if (preState !== "") {
 // equal function runs to calculate the expression once an operatorType is pressed.
       equal();
+      setCurState(preState)
     } else {
       setPreState(curState);
       setCurState("");
