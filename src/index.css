@@ -19,31 +19,42 @@
   background-color: black;
   border-radius: 15px;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
   overflow: hidden;
 }
 
 .display {
   text-align: right;
-  margin: 30px 40px 5px 20px;
-  width: 93%;
+  margin: 0px 50px 5px 20px;
+  width: 92%;
   height: 100px;
   background-color:#51abb2;
   color: #fff;
   font-size: 40px;
   padding: 30px 30px;
   border-radius: 5px;
+  border-width: 5px;
+  border-color: #fff;
+}
+
+.preview  {
+  color:rgb(255, 255, 255);
+  font-size: 30px;
+  text-align: right;
+  padding: 20px 20px;
+
 }
 
 button {
   color: #fff;
-  font-size: 30px;
+  font-size: 40px;
   cursor: pointer;
   transition: 0.4s;
   border: none;
   border-radius: 10px;
-  padding: 20px;
-  margin: 5px;
+  padding: 15px;
+  margin: 3px;
+
 }
   
 .allButtons {
@@ -63,9 +74,18 @@ button:hover {
   opacity: 0.8;
 }
 
-.deleteButton {
+
+.allClear {
   background-color: #ffb1a5;
   grid-column: span 3;
+}
+
+.plusMinus {
+  background-color: #ffb1a5;
+}
+
+.percent {
+  background-color: #ffb1a5;
 }
 
 
@@ -79,7 +99,12 @@ button:hover {
 
 .zero {
   background-color: #e16539;
-  grid-column: span 2;
+  grid-column: span 1;
+}
+
+.deleteButton {
+  background-color: #ffb1a5;
+  grid-column: span 1;
 }
 
 .equalSign {
@@ -91,5 +116,5 @@ button:hover {
 }
 
 .dotSign {
-  background-color: #ffb1a5;;
+  background-color: #e16539;
 }
