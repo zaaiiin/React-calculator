@@ -23,9 +23,8 @@ function App() {
     } else {
      setInput(".")
     }
- 
 
-
+    
 
     // if total is true that means we have pressed the equal button and dont want to continue the calculations in the background so we set our previous state to nothing
     if (total) {
@@ -38,48 +37,41 @@ function App() {
       ? setCurState((pre) => pre + e.target.innerText) 
       : setCurState(e.target.innerText);
      setTotal(false);
-    
-
-    
-   completeExpression ? setCompleteExpression((preCurState) => preCurState + e.target.innerText) : setCompleteExpression(e.target.innerText);
-  } 
-
    
-
+   completeExpression ? setCompleteExpression((preCurState) => preCurState + e.target.innerText) : setCompleteExpression(e.target.innerText);
+   setTotal(false)
+  } 
 
   
   useEffect(() => {
     setInput(curState);
   }, [curState]);
 
-
-  
   useEffect(() => {
     setInput("0");
   }, []);
 
 
 
-
-
   const operatorType = (e) => {
     setTotal(false);
 
-  
     setOperator(e.target.innerText);
-    completeExpression ? setCompleteExpression((preCurState) => preCurState + " " + e.target.innerText + " ") : setCompleteExpression(e.target.innerText);
+    
 
+    completeExpression ? setCompleteExpression((preCurState) => preCurState  + e.target.innerText ) : setCompleteExpression();
    
- 
+    
     if (e.target.innerText === "-" && curState === "") {
       setCurState("-");
+      
     equal();
     };
     if (curState === "") return;
     if (preState !== "") {
 // equal function runs to calculate the expression once an operatorType is pressed.
       equal();
-      setCurState(preState)
+    
     } else {
       setPreState(curState);
       setCurState("");
@@ -89,11 +81,13 @@ function App() {
     
 
   const equal = (e) => {
-    if (e.target.innerText === "=") {
+    if (e?.target.innerText === "=") {
       setTotal(true);
+      setCompleteExpression("")
     }
-
     
+    
+  
 
    let cal;
     switch (operator) {
@@ -119,13 +113,14 @@ function App() {
 
 
   //this is done to make sure it's ready for the next calculation
-  setInput("");
+  setInput("0");
   setPreState(cal);
   setCurState("");
-  setCompleteExpression("");
+
+  
   };
 
- 
+  
    
 
   const allClear = () => {
@@ -136,15 +131,28 @@ function App() {
   };
  
 
-  const deleteLast = () => {
+  const deleteLast = (e) => {
     if (curState === "") {
       return;
     }
-     const newVal = curState.slice(0, -1);
-    setCurState(newVal);
 
-    const newHistoryDisplay = completeExpression.slice(0, -1);
+  /*  const newVal = curState.slice(0, -1);
+      setCurState(newVal) */
+     
+      
+  
+
+   const newHistoryDisplay = completeExpression.slice(0, -1)
     setCompleteExpression(newHistoryDisplay);
+   setCurState( eval(newHistoryDisplay) )
+    
+    if (!completeExpression.includes(operator)) {
+      setCurState("0")
+    }
+  
+      
+
+    
   };
 
 
