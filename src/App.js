@@ -13,7 +13,7 @@ function App() {
   const [total, setTotal] = useState(false);
 
 
- const [completeExpression, setCompleteExpression] = useState("");
+ const [lastHistory, setLastHistory] = useState("");
 
 
 
@@ -38,7 +38,7 @@ function App() {
       : setCurState(e.target.innerText);
      setTotal(false);
    
-   completeExpression ? setCompleteExpression((preCurState) => preCurState + e.target.innerText) : setCompleteExpression(e.target.innerText);
+   lastHistory ? setLastHistory((preCurState) => preCurState + e.target.innerText) : setLastHistory(e.target.innerText);
    setTotal(false)
   } 
 
@@ -59,7 +59,7 @@ function App() {
     setOperator(e.target.innerText);
     
 
-    completeExpression ? setCompleteExpression((preCurState) => preCurState  + e.target.innerText ) : setCompleteExpression();
+    lastHistory ? setLastHistory((preCurState) => preCurState  + e.target.innerText ) : setLastHistory();
    
     
     if (e.target.innerText === "-" && curState === "") {
@@ -83,7 +83,7 @@ function App() {
   const equal = (e) => {
     if (e?.target.innerText === "=") {
       setTotal(true);
-      setCompleteExpression("")
+      setLastHistory("")
     }
     
     
@@ -113,7 +113,7 @@ function App() {
 
 
   //this is done to make sure it's ready for the next calculation
-  setInput("0");
+  setInput("");
   setPreState(cal);
   setCurState("");
 
@@ -126,8 +126,8 @@ function App() {
   const allClear = () => {
     setPreState("");
     setCurState("");
-    setInput("0");
-    setCompleteExpression("")
+    setInput("");
+    setLastHistory("")
   };
  
 
@@ -142,12 +142,13 @@ function App() {
       
   
 
-   const newHistoryDisplay = completeExpression.slice(0, -1)
-    setCompleteExpression(newHistoryDisplay);
-   setCurState( eval(newHistoryDisplay) )
+   const newLastHistory = lastHistory.slice(0, -1)
+    setLastHistory(newLastHistory);
+   setCurState( eval(newLastHistory) )
     
-    if (!completeExpression.includes(operator)) {
-      setCurState("0")
+    if (!lastHistory.includes(operator)) {
+      setCurState("")
+      setPreState("0")
     }
   
       
@@ -161,7 +162,7 @@ function App() {
   return (
    <div className="App">
       <div className="calculator">
-        <div className="preview" id="history_log"> {completeExpression} </div>
+        <div className="preview" id="history_log"> {lastHistory} </div>
          <div className="display">
          {input !== "" || input === "0" ? (
             <NumberFormat

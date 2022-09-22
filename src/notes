@@ -1,0 +1,109 @@
+import { useState, useEffect } from 'react';
+
+function App() {
+     const [calc, setCalc] = useState("");
+     const [result, setResult] = useState("");
+    
+   
+    const ops = ['/', '*', '-', '+', '.'];
+
+
+    const updateCalc= value => {
+    
+      //when the only input is an operator or when the last character is an operator, overwrite it and otherwise append it
+    if (
+      ops.includes(value) && calc === "" ||
+      ops.includes(value) && ops.includes(calc.slice(-1))
+    ) { return;
+    } 
+
+    setCalc(calc + value);
+    if (!ops.includes(value)) {
+  //    setResult(eval(calc + value).toString());
+      return new Function("return" + (calc + value))();
+    }
+  
+  }
+    
+  var calculate = function (input) {
+    return 
+  }
+
+ // similar to eval and can be damaging
+ // const calculate = input => {
+ //    return new Function("return" + input)();
+ //  }
+
+
+  //  const equal = () => {
+  //    setCalc(eval(calc).toString());
+  //  }
+
+
+    const deleteLast = () => {
+      if (calc === '') {
+
+      }
+      const value = calc.slice(0, -1);
+
+      setCalc(value);
+    }
+
+    const allClear = () => {
+      if (calc === '') {
+
+      }
+      setCalc('');
+    }
+
+
+  return (
+   <div className="App">
+      <div className="calculator">
+     
+      <div className="display">
+        {calc || "0"}
+      </div>
+
+      <div className="allButtons">
+
+      
+  
+      <button className="allClear" onClick={allClear}>AC</button>
+    
+      <button className="operators" onClick={() => updateCalc('/')}>/</button>
+      <button className="digits" onClick={() => updateCalc('7')} >7</button>
+      <button className="digits" onClick={() => updateCalc('8')}>8</button>
+      <button className="digits" onClick={() => updateCalc('9')}>9</button>
+
+      <button className="operators" onClick={() => updateCalc('*')}>*</button>
+      <button className="digits" onClick={() => updateCalc('4')}>4</button>
+      <button className="digits" onClick={() => updateCalc('5')}>5</button>
+      <button className="digits" onClick={() => updateCalc('6')}>6</button>
+
+      <button className="operators" onClick={() => updateCalc('-')}>-</button>
+      <button className="digits" onClick={() => updateCalc('1')}>1</button>
+      <button className="digits" onClick={() => updateCalc('2')}>2</button>
+      <button className="digits" onClick={() => updateCalc('3')}>3</button>
+
+      <button className="operators" onClick={() => updateCalc('+')}>+</button>
+      
+      <button className="zero" onClick={() => updateCalc('0')}>0</button>
+
+      <button className="dotSign" onClick={() => updateCalc('.')}>.</button>
+
+      <button className="deleteButton" onClick={deleteLast}>DEL</button>
+      
+      <button className="equalSign" onClick={() => calculate}>=</button>
+
+     </div>
+
+    
+    </div>
+    </div>
+  );
+  }
+
+
+export default App;
+
